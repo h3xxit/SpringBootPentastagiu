@@ -4,10 +4,12 @@ import com.pentalog.pentastagiu.service.api.MovieService;
 import com.pentalog.pentastagiu.service.dto.MovieDTO;
 import com.pentalog.pentastagiu.repository.data.MovieProvider;
 import com.pentalog.pentastagiu.web.exception.NoMovieException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,7 +32,13 @@ public class MovieController {
     }
 
     @PostMapping
-    public MovieDTO create(@RequestBody MovieDTO movieDTO) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public MovieDTO create(@Valid @RequestBody MovieDTO movieDTO) {
         return movieService.create(movieDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") String movieId) {
+        movieService.delete(movieId);
     }
 }

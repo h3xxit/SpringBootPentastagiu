@@ -34,4 +34,10 @@ public class MovieServiceImpl implements MovieService {
     public MovieDTO create(MovieDTO movieDTO) {
         return movieRepository.create(movieDTO);
     }
+
+    @Override
+    public void delete(String movieId) {
+        MovieDTO dbMovie = getById(movieId);
+        movieRepository.delete(movieId);
+    }
 }

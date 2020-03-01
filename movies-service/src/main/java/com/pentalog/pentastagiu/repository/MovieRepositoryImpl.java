@@ -21,6 +21,11 @@ public class MovieRepositoryImpl implements MovieRepository {
 
     @Override
     public MovieDTO create(MovieDTO movieDTO) {
-        return create(movieDTO);
+        return MovieProvider.create(movieDTO);
+    }
+
+    @Override
+    public void delete(String movieId) {
+        MovieProvider.delete(movieId);
     }
 }

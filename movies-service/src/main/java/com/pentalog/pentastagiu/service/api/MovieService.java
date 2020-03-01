@@ -11,4 +11,6 @@ public interface MovieService {
     MovieDTO getById(String id);
 
     MovieDTO create(MovieDTO movieDTO);
+
+    void delete(String movieId);
 }
